@@ -41,6 +41,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  background-color: #424e3b7c;
+  padding: 8px;
+  border-radius: 32px;
   z-index: 100; /* Garante que o menu fique acima de outros elementos da página. */
 }
 
@@ -122,6 +125,13 @@ body {
   align-items: flex-start;
   text-align: left;
   gap: 24px; /* Espaçamento entre o título e o conteúdo da seção */
+}
+
+/* Define o estado inicial para as seções que serão animadas pela biblioteca Motion. */
+/* Elas começam invisíveis (opacity: 0) e deslocadas para baixo (translateY). */
+.secao-conteudo:not(#home) {
+  opacity: 0;
+  transform: translateY(50px);
 }
 
 /* Estilo para os títulos de cada seção. */
