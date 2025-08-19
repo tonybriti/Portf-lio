@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony Brito.dev</title>
     <link rel="stylesheet" href="styles/style.css">
+    <!-- Adiciona a biblioteca de ícones Font Awesome para a seção de Skills -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <main class="apresentacao">
+        <div id="home_a"></div>
         <section id="home" class="secao-conteudo">
             <div class="home__conteudo-texto">
                 <h1 class="secao-conteudo__titulo">Bem-vindo ao meu Portfólio!</h1>
@@ -16,31 +19,218 @@
             <img class="home__imagem" src="assets/img-eu2.png" alt="Foto de perfil">
         </section>
 
+        <div id="sobre_min_a"></div>
         <section id="sobre-mim" class="secao-conteudo">
             <h2 class="secao-conteudo__titulo">Sobre Mim</h2>
             <p class="secao-conteudo__texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.</p>
             <p class="secao-conteudo__texto">Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh.</p>
         </section>
 
+        <div id="skills_a"></div>
         <section id="skills" class="secao-conteudo">
             <h2 class="secao-conteudo__titulo">Skills</h2>
-            <p class="secao-conteudo__texto">Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet.</p>
+            <div class="skills-carousel-wrapper">
+                <div class="skills-container">
+                    <!-- A lista de skills foi expandida para melhorar o efeito do carrossel. -->
+                    <div class="skill-card">
+                        <i class="fab fa-html5 skill-icon"></i>
+                        <p class="skill-name">HTML5</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-css3-alt skill-icon"></i>
+                        <p class="skill-name">CSS3</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js skill-icon"></i>
+                        <p class="skill-name">JavaScript</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-react skill-icon"></i>
+                        <p class="skill-name">React</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-node-js skill-icon"></i>
+                        <p class="skill-name">Node.js</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-python skill-icon"></i>
+                        <p class="skill-name">Python</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-git-alt skill-icon"></i>
+                        <p class="skill-name">Git</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-docker skill-icon"></i>
+                        <p class="skill-name">Docker</p>
+                    </div>
+
+                    <!-- Cópia dos cards para garantir a rolagem infinita e sem falhas -->
+                    <div class="skill-card" aria-hidden="true">
+                        <i class="fab fa-html5 skill-icon"></i>
+                        <p class="skill-name">HTML5</p>
+                    </div>
+                    <div class="skill-card" aria-hidden="true">
+                        <i class="fab fa-css3-alt skill-icon"></i>
+                        <p class="skill-name">CSS3</p>
+                    </div>
+                    <div class="skill-card" aria-hidden="true">
+                        <i class="fab fa-js skill-icon"></i>
+                        <p class="skill-name">JavaScript</p>
+                    </div>
+                    <div class="skill-card" aria-hidden="true">
+                        <i class="fab fa-react skill-icon"></i>
+                        <p class="skill-name">React</p>
+                    </div>
+                    <div class="skill-card" aria-hidden="true">
+                        <i class="fab fa-node-js skill-icon"></i>
+                        <p class="skill-name">Node.js</p>
+                    </div>
+                    <div class="skill-card" aria-hidden="true">
+                        <i class="fab fa-python skill-icon"></i>
+                        <p class="skill-name">Python</p>
+                    </div>
+                    <div class="skill-card" aria-hidden="true">
+                        <i class="fab fa-git-alt skill-icon"></i>
+                        <p class="skill-name">Git</p>
+                    </div>
+                    <div class="skill-card" aria-hidden="true">
+                        <i class="fab fa-docker skill-icon"></i>
+                        <p class="skill-name">Docker</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <div id="certificados_a"></div>
         <section id="certificados" class="secao-conteudo">
             <h2 class="secao-conteudo__titulo">Certificados</h2>
-            <p class="secao-conteudo__texto">Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi.</p>
+            <div class="certificados-carousel">
+                <div class="certificados-track">
+                    <!-- Card de Certificado (Exemplo 1) -->
+                    <div class="certificado-card">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de Lógica de Programação">
+                        <h3 class="certificado-titulo">Lógica de Programação</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <!-- Card de Certificado (Exemplo 2) -->
+                    <div class="certificado-card">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de HTML e CSS">
+                        <h3 class="certificado-titulo">HTML e CSS</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <!-- Card de Certificado (Exemplo 3) -->
+                    <div class="certificado-card">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de JavaScript">
+                        <h3 class="certificado-titulo">JavaScript para Web</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <!-- Card de Certificado (Exemplo 4) -->
+                    <div class="certificado-card">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de React">
+                        <h3 class="certificado-titulo">React: Avançando</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <!-- Card de Certificado (Exemplo 5) -->
+                    <div class="certificado-card">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de Node.js">
+                        <h3 class="certificado-titulo">Node.js: API Rest</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <!-- Card de Certificado (Exemplo 6) -->
+                    <div class="certificado-card">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de Git e GitHub">
+                        <h3 class="certificado-titulo">Git e GitHub</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <!-- Cópia dos certificados para o carrossel infinito -->
+                    <div class="certificado-card" aria-hidden="true">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de Lógica de Programação">
+                        <h3 class="certificado-titulo">Lógica de Programação</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <div class="certificado-card" aria-hidden="true">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de HTML e CSS">
+                        <h3 class="certificado-titulo">HTML e CSS</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <div class="certificado-card" aria-hidden="true">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de JavaScript">
+                        <h3 class="certificado-titulo">JavaScript para Web</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <div class="certificado-card" aria-hidden="true">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de React">
+                        <h3 class="certificado-titulo">React: Avançando</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <div class="certificado-card" aria-hidden="true">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de Node.js">
+                        <h3 class="certificado-titulo">Node.js: API Rest</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                    <div class="certificado-card" aria-hidden="true">
+                        <img src="assets/certificado-placeholder.png" alt="Certificado de Git e GitHub">
+                        <h3 class="certificado-titulo">Git e GitHub</h3>
+                        <p class="certificado-instituicao">Alura</p>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" aria-label="Certificado anterior"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next" aria-label="Próximo certificado"><i class="fas fa-chevron-right"></i></button>
+            </div>
         </section>
 
+        <div id="projetos_a"></div>
         <section id="projetos" class="secao-conteudo">
             <h2 class="secao-conteudo__titulo">Projetos</h2>
-            <p class="secao-conteudo__texto">Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam.</p>
+            <div class="projetos-container">
+                <!-- Card de Projeto 1 -->
+                <div class="projeto-card">
+                    <div class="card-imagem" id="imagem-projeto-1"></div>
+                    <div class="card-conteudo">
+                        <h3 class="card-titulo">Site Guia Maranhão</h3>
+                        <div class="card-tags">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="#" class="card-botao">Acessar Projeto</a>
+                    </div>
+                </div>
+                <!-- Card de Projeto 2 -->
+                <div class="projeto-card">
+                    <div class="card-imagem" id="imagem-projeto-2"></div>
+                    <div class="card-conteudo">
+                        <h3 class="card-titulo">Banco de Dados – Sistemas Carros</h3>
+                        <div class="card-tags">
+                            <span>PostgreSQL</span>
+                            <span>SQL</span>
+                            <span>PL/pgSQL</span>
+                        </div>
+                        <a href="#" class="card-botao">Acessar Projeto</a>
+                    </div>
+                </div>
+                <!-- Card de Projeto 3 -->
+                <div class="projeto-card">
+                    <div class="card-imagem" id="imagem-projeto-3"></div>
+                    <div class="card-conteudo">
+                        <h3 class="card-titulo">T-MED - App de Saúde Ocupacional</h3>
+                        <div class="card-tags">
+                            <span>Figma</span>
+                            <span>UI/UX</span>
+                            <span>Protótipo</span>
+                        </div>
+                        <a href="#" class="card-botao">Acessar Projeto</a>
+                    </div>
+                </div>
+            </div>
         </section>
 
+        <div id="fale_comigo_a"></div>
         <section id="fale-comigo" class="secao-conteudo">
             <div class="contato__info">
-                <h2 class="secao-conteudo__titulo">Gostou do que viu?<br>Vamos trabalhar juntos.</h2>
-                <p class="secao-conteudo__texto">Preencha o formulário ao lado ou, se preferir, me encontre nas redes sociais.</p>
+                <h2 class="secao-conteudo__titulo">E aí<br>Vamos trabalhar juntos?</h2>
+                <p class="secao-conteudo__texto">Preencha o formulário ao lado ou, se preferir, me encontre nas redes sociais abaixo.</p>
                 <div class="contato__social-links">
                     <a href="https://github.com/tonybriti" target="_blank" class="social-link" aria-label="GitHub">
                         <img src="assets/icon-git2.png" alt="Ícone do GitHub">
@@ -68,27 +258,27 @@
     </footer>
 
     <nav class="botoes-laterais">
-        <a href="#home" class="botoes-laterais__link" aria-label="Home">
+        <a href="#home_a" class="botoes-laterais__link" aria-label="Home">
             <img src="assets/icon-home.png" alt="Ícone da seção Home">
             <span class="botoes-laterais__tooltip">Home</span>
         </a>
-        <a href="#sobre-mim" class="botoes-laterais__link" aria-label="Sobre mim">
+        <a href="#sobre_min_a" class="botoes-laterais__link" aria-label="Sobre mim">
             <img src="assets/icon-sobremim.png" alt="Ícone da seção Sobre mim">
             <span class="botoes-laterais__tooltip">Sobre mim</span>
         </a>
-        <a href="#skills" class="botoes-laterais__link" aria-label="Habilidades">
+        <a href="#skills_a" class="botoes-laterais__link" aria-label="Habilidades">
             <img src="assets/icon-skills.png" alt="Ícone da seção Habilidades">
             <span class="botoes-laterais__tooltip">Skills</span>
         </a>
-        <a href="#certificados" class="botoes-laterais__link" aria-label="Certificados">
+        <a href="#certificados_a" class="botoes-laterais__link" aria-label="Certificados">
             <img src="assets/icon-certificados.png" alt="Ícone da seção Certificados">
             <span class="botoes-laterais__tooltip">Certificados</span>
         </a>
-        <a href="#projetos" class="botoes-laterais__link" aria-label="Projetos">
+        <a href="#projetos_a" class="botoes-laterais__link" aria-label="Projetos">
             <img src="assets/icon-projetos3.png" alt="Ícone da seção Projetos">
             <span class="botoes-laterais__tooltip">Projetos</span>
         </a>
-        <a href="#fale-comigo" class="botoes-laterais__link" aria-label="Fale comigo">
+        <a href="#fale_comigo_a" class="botoes-laterais__link" aria-label="Fale comigo">
             <img src="assets/icon-falecmg.png" alt="Ícone da seção Fale comigo">
             <span class="botoes-laterais__tooltip">Contatos</span>
         </a>

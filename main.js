@@ -1,32 +1,141 @@
-// Trocamos a CDN para esm.sh, que é uma alternativa mais robusta para carregar módulos ES.
+// Importa as funções de animação da biblioteca Motion One.
 import { scroll, animate } from "https://esm.sh/motion";
 
 /**
- * Animações de Rolagem com Motion One
+ * Animação de entrada para as seções ao rolar a página.
  *
- * Itera sobre cada seção de conteúdo (exceto a primeira, #home)
- * e aplica uma animação que é controlada pela rolagem da página.
- *
- * A animação faz a seção surgir (opacidade de 0 a 1) e deslizar
- * para cima (de 100px para 0px).
- *
- * O `offset` define quando a animação começa e termina:
- * - "start end": A animação começa quando o topo da seção atinge a parte inferior da tela.
- * - "center center": A animação termina quando o centro da seção atinge o centro da tela.
+ * Utiliza a biblioteca Motion One para animar a opacidade e a posição
+ * de cada seção conforme ela entra na área visível da tela.
  */
 document.querySelectorAll('.secao-conteudo:not(#home)').forEach((section) => {
     scroll(
         animate(section, {
             opacity: [0, 1],
             transform: ["translateY(50px)", "translateY(0px)"]
-        }),
-        {
+        }), {
             target: section,
             offset: ["start end", "center center"]
         }
     );
 });
 
+/**
+ * Lógica para destacar o link de navegação da seção ativa.
+ *
+ * Utiliza a API IntersectionObserver para detectar eficientemente qual
+ * seção está visível na tela e adiciona uma classe 'active' ao link
+ * correspondente na barra de navegação lateral.
+ */
+function setupActiveSectionObserver() {
+    const sections = document.querySelectorAll('.secao-conteudo');
+    const navLinks = document.querySelectorAll('.botoes-laterais__link');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                const activeLink = document.querySelector(`.botoes-laterais__link[href="#${id}"]`);
+
+                // Remove a classe ativa de todos os links
+                navLinks.forEach(link => link.classList.remove('botoes-laterais__link--active'));
+
+                // Adiciona a classe ativa ao link da seção visível
+                if (activeLink) {
+                    activeLink.classList.add('botoes-laterais__link--active');
+                }
+            }
+        });
+    }, { threshold: 0.5 }); // A seção é considerada ativa quando 50% dela está visível
+
+    sections.forEach(section => observer.observe(section));
+}
+
+setupActiveSectionObserver();
+
+/**
+ * Lógica para o Carrossel de Certificados
+ *
+ * Controla a navegação por cliques, movendo o contêiner de certificados
+ * para a esquerda ou direita e atualizando o estado dos botões.
+ */
+function setupCertificateCarousel() {
+    const carousel = document.querySelector('.certificados-carousel');
+    if (!carousel) return; // Se o carrossel não existir na página, não faz nada.
+
+    const track = carousel.querySelector('.certificados-track');
+    const cards = Array.from(track.children);
+    const nextButton = carousel.querySelector('.next');
+    const prevButton = carousel.querySelector('.prev');
+
+    // Se não houver cards suficientes para rolar, esconde os botões.
+    if (track.scrollWidth <= carousel.clientWidth) {
+        if (nextButton) nextButton.style.display = 'none';
+        if (prevButton) prevButton.style.display = 'none';
+        return;
+    }
+
+    // Assumindo que os cards foram duplicados no HTML
+    const originalCardCount = cards.length / 2;
+    let currentIndex = 0;
+    let isTransitioning = false;
+
+    const getMoveDistance = () => {
+        if (cards.length === 0) return 0;
+        const cardWidth = cards[0].offsetWidth;
+        const gap = parseInt(window.getComputedStyle(track).gap) || 20;
+        return cardWidth + gap;
+    };
+
+    const moveTrack = () => {
+        track.style.transform = `translateX(-${currentIndex * getMoveDistance()}px)`;
+    };
+
+    nextButton.addEventListener('click', () => {
+        if (isTransitioning) return;
+        isTransitioning = true;
+        currentIndex++;
+        track.style.transition = 'transform 0.5s ease-in-out';
+        moveTrack();
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        if (currentIndex === 0) {
+            // Salto "invisível" para o final da lista de clones
+            track.style.transition = 'none';
+            currentIndex = originalCardCount;
+            moveTrack();
+            track.offsetHeight; // Força o navegador a aplicar a mudança imediatamente
+        }
+
+        currentIndex--;
+        track.style.transition = 'transform 0.5s ease-in-out';
+        moveTrack();
+    });
+
+    track.addEventListener('transitionend', () => {
+        isTransitioning = false;
+        // Se chegamos na cópia do primeiro item, saltamos de volta para o original
+        if (currentIndex >= originalCardCount) {
+            track.style.transition = 'none';
+            currentIndex = 0;
+            moveTrack();
+        }
+    });
+
+    const handleResize = () => {
+        track.style.transition = 'none';
+        currentIndex = 0; // Reseta a posição ao redimensionar
+        moveTrack();
+    };
+
+    setTimeout(handleResize, 100); // Executa após um pequeno delay para garantir que o layout esteja calculado
+    window.addEventListener('resize', handleResize);
+}
+
+setupCertificateCarousel();
 
 /**
  * Lógica para o Formulário de Contato

@@ -71,12 +71,22 @@ body {
   flex-shrink: 0;
 }
 
+/* Estilo para o botão de navegação ativo, destacado via JavaScript. */
+.botoes-laterais__link--active {
+  box-shadow: 0 0 10px 0 var(--cor-terciaria) inset, 0 0 10px 4px var(--cor-terciaria);
+}
+
 /* Efeito visual quando o mouse passa por cima do botão. */
 .botoes-laterais__link:hover {
   /* O 'box-shadow' muda para criar um brilho e um preenchimento sutil. */
   box-shadow: 0 0 10px 0 var(--cor-terciaria) inset, 0 0 10px 4px var(--cor-terciaria);
   /* Aumenta ligeiramente o tamanho do botão para dar feedback visual. */
   transform: scale(1.3);
+}
+
+/* Impede que o botão já ativo aumente de tamanho ao passar o mouse, evitando um "salto". */
+.botoes-laterais__link--active:hover {
+  transform: none;
 }
 
 /* Estilo da caixa de dica (tooltip) que aparece ao lado do botão. */
@@ -105,13 +115,19 @@ body {
   visibility: visible;
 }
 
+/* Torna o tooltip visível PERMANENTEMENTE quando o link pai está ativo. */
+.botoes-laterais__link--active .botoes-laterais__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* --- Estilos para o Conteúdo Principal --- */
 
 /* Container principal que envolve todas as seções de conteúdo. */
 .apresentacao {
   padding-top: 5%;
-  padding-bottom: 5%; /* Adiciona espaço no final da página */
-  max-width: 65%;
+  padding-bottom: 10%; /* Aumenta o espaço no final da página, antes do rodapé. */
+  max-width: 70%;
   padding-left: 10%;
   display: flex;
   flex-direction: column;
@@ -333,4 +349,255 @@ body {
   visibility: visible;
   opacity: 1;
   transform: translateX(-50%) translateY(0); /* Efeito de subir ao aparecer */
+}
+
+/* --- Estilos para a Seção de Skills --- */
+
+/* Wrapper para o carrossel que aplica a máscara e esconde o overflow. */
+.skills-carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  padding: 23px 0; /* Adiciona espaço vertical para evitar que o brilho do hover seja cortado. */
+}
+
+/* Container que organiza os cards de habilidades em um grid responsivo. */
+.skills-container {
+  display: flex; /* Muda para flex para criar uma linha contínua. */
+  gap: 25px; /* Espaçamento entre os cards */
+  /* A largura é calculada para caber todos os cards (originais + cópias). */
+  width: max-content;
+  /* Animação de rolagem. A duração foi aumentada para acomodar mais skills. */
+  animation: scroll-skills 40s linear infinite;
+}
+
+/* Pausa a animação quando o mouse está sobre a área do carrossel. */
+.skills-carousel-wrapper:hover .skills-container {
+  animation-play-state: paused;
+}
+
+/* Card individual para cada habilidade. */
+.skill-card {
+  background-color: #252D40; /* Um tom escuro, complementar ao fundo. */
+  border: 1px solid transparent; /* Borda inicial transparente. */
+  border-radius: 10px;
+  padding: 20px; /* Reduz o padding para acomodar o novo tamanho. */
+  width: 160px; /* Largura fixa para consistência no carrossel. */
+  height: 160px; /* Altura fixa para criar um quadrado. */
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  /* Adiciona flexbox para centralizar o conteúdo perfeitamente. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* Espaçamento ajustado para o novo tamanho. */
+}
+
+/* Efeito de hover para destacar o card. */
+.skill-card:hover {
+  transform: translateY(-8px); /* Eleva o card. */
+  border-color: var(--cor-terciaria); /* Mostra a borda com a cor de destaque. */
+  box-shadow: 0 0 15px -2px var(--cor-terciaria); /* Adiciona um brilho sutil. */
+}
+
+/* Ícone da habilidade (ex: HTML5, CSS3). */
+.skill-icon {
+  font-size: 42px; /* Tamanho do ícone ajustado. */
+  color: var(--cor-terciaria); /* Usa a cor de destaque do projeto. */
+  /* Estilos para garantir que todos os ícones tenham o mesmo tamanho de caixa. */
+  height: 45px;
+  width: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0; /* O espaçamento agora é controlado pelo 'gap' do card. */
+}
+
+/* Nome da habilidade. */
+.skill-name {
+  font-size: 1.1rem; /* Tamanho da fonte ajustado. */
+  font-weight: 500;
+  margin: 0; /* O espaçamento agora é controlado pelo 'gap' do card. */
+  color: var(--cor-secundaria);
+}
+
+/* Animação que move o container de skills da direita para a esquerda. */
+@keyframes scroll-skills {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Move o container em 50% de sua largura, que corresponde ao tamanho dos cards originais. */
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Estilos para o Carrossel de Certificados --- */
+
+.certificados-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Esconde os cards que estão fora da área visível. */
+  padding: 0 50px; /* Adiciona espaço para os botões de navegação não sobreporem os cards. */
+  box-sizing: border-box;
+}
+
+.certificados-track {
+  display: flex;
+  gap: 20px; /* Espaçamento entre os cards. */
+  transition: transform 0.5s ease-in-out; /* Animação suave de deslizamento. */
+}
+
+.certificado-card {
+  background-color: #252D40;
+  border-radius: 10px;
+  overflow: hidden; /* Garante que a imagem não ultrapasse as bordas arredondadas. */
+  text-align: center;
+  flex: 0 0 31%; /* Tenta mostrar 3 cards por vez, ajustável. */
+  min-width: 280px; /* Largura mínima para responsividade. */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.certificado-card:hover {
+  transform: scale(1.03);
+}
+
+.certificado-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Proporção comum para imagens de certificados/banners. */
+  object-fit: cover;
+  display: block;
+}
+
+.certificado-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cor-secundaria);
+  margin: 15px 10px 5px;
+}
+
+.certificado-instituicao {
+  font-size: 1rem;
+  color: var(--cor-terciaria);
+  margin: 0 10px 15px;
+}
+
+/* Estilos para os botões de navegação do carrossel. */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(22, 31, 48, 0.7); /* Fundo semitransparente. */
+  color: var(--cor-terciaria);
+  border: 1px solid var(--cor-terciaria);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+
+.carousel-btn:hover { background-color: var(--cor-terciaria); color: var(--cor-primaria); }
+
+/* --- Estilos para a Seção de Projetos --- */
+
+.projetos-container {
+    display: grid; /* Alterado para grid para garantir 3 colunas. */
+    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual. */
+    gap: 30px;
+    width: 100%;
+}
+
+.projeto-card {
+    background-color: #252D40; /* Cor consistente com outros cards. */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px -5px var(--cor-terciaria); /* Adiciona brilho neon no hover */
+}
+
+.card-imagem {
+    height: 160px; /* Altura da imagem reduzida ainda mais. */
+    background-size: cover;
+    background-position: center;
+    border-bottom: 2px solid var(--cor-terciaria); /* Linha de separação com a cor de destaque */
+}
+
+/* --- Imagens específicas para cada cartão --- */
+/* IMPORTANTE: Substitua os caminhos pelas suas imagens na pasta 'assets' */
+#imagem-projeto-1 {
+    background-image: url('../assets/projeto-placeholder-1.png');
+}
+
+#imagem-projeto-2 {
+    background-image: url('../assets/projeto-placeholder-2.png');
+}
+
+#imagem-projeto-3 {
+    background-image: url('../assets/projeto-placeholder-3.png');
+}
+
+.card-conteudo {
+    padding: 20px; /* Padding do conteúdo reduzido. */
+    color: var(--cor-secundaria);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-titulo {
+    margin: 0 0 15px 0;
+    font-size: 1.4rem; /* Tamanho da fonte do título reduzido. */
+    font-weight: 700;
+    color: var(--cor-secundaria); /* Garante consistência com outros títulos */
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.card-tags span {
+    background-color: rgba(98, 255, 0, 0.15); /* Fundo com a cor de destaque e baixa opacidade */
+    color: var(--cor-terciaria); /* Texto com a cor de destaque */
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.card-botao {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-primaria);
+    text-decoration: none;
+    padding: 10px 12px; /* Padding do botão ajustado. */
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: auto; /* Empurra o botão para o final do cartão */
+    transition: all 0.3s ease;
+}
+
+.card-botao:hover {
+    background-color: #4db300; /* Tom mais escuro para o hover, consistente com o botão de contato */
+    transform: scale(1.05);
 }
